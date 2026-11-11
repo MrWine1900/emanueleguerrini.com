@@ -50,7 +50,7 @@
     });
     updateCalc();
     // The source is a documented monthly PSV-based benchmark, not an intraday quotation.
-    fetch('/data/gas-price.json',{cache:'no-store'}).then(res=>{if(!res.ok)throw Error('gas benchmark unavailable');return res.json()}).then(data=>{
+    fetch('/gas-price.php',{cache:'no-store'}).then(res=>{if(!res.ok)throw Error('gas benchmark unavailable');return res.json()}).then(data=>{
       const value=Number(data.eur_mwh),sourceFactor=Number(data.pcs_gj_per_smc)/3.6;
       if(!Number.isFinite(value)||value<0||value>500||!/^20\d{2}-(0[1-9]|1[0-2])$/.test(data.reference_month)||Math.abs(sourceFactor-0.0107)>0.001)throw Error('invalid benchmark');
       pcsGJPerSmc=Number(data.pcs_gj_per_smc);

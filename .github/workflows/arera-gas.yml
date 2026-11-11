@@ -1,0 +1,32 @@
+name: Refresh official ARERA gas price
+on:
+  schedule:
+    # Weekly: ARERA publishes monthly averages early the following month.
+    - cron: '27 7 * * 2'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: arera-gas-benchmark
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Retrieve and validate ARERA monthly gas benchmark
+        run: python tools/update_arera_gas.py
+      - name: Commit only verified newer price
+        run: |
+          if git diff --quiet -- data/gas-price.json; then
+            echo "No new price published. No change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/gas-price.json
+          git commit -m "data: refresh official ARERA CMEMm gas benchmark"
+          git push

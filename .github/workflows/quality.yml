@@ -17,4 +17,4 @@ jobs:
       - name: Verify local links and anchors
         run: python3 check_site.py
       - name: PHP syntax
-        run: php -l contact.php && php -l contact-config.php
+        run: php -l contact.php && php -l contact-config.php && php -l gas-price.php

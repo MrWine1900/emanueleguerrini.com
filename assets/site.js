@@ -8,20 +8,66 @@
   const fmt=new Intl.NumberFormat(lang==='it'?'it-IT':'en-US',{maximumFractionDigits:0});
   const money=new Intl.NumberFormat(lang==='it'?'it-IT':'en-US',{style:'currency',currency:'EUR',maximumFractionDigits:0});
   const inputs=['steam','hours','price','efficiency','target'].map(id=>$('#calc-'+id));
-  function updateCalc(){if(inputs.some(x=>!x))return;
+  const gasUnit=$('#calc-unit'),gasLHV=$('#calc-lhv'),gasNote=$('#gas-market-note'),gasInput=$('#calc-price');
+  const ARERA_URL='https://www.arera.it/area-operatori/prezzi-e-tariffe/valore-cmemm-vulnerabili';
+  let pcsGJPerSmc=0.03852,gasUserEdited=false;
+  const pcsKWh=()=>pcsGJPerSmc*1000/3.6;
+  const factor=()=>pcsGJPerSmc/3.6;
+  function localized(value,decimals){return Number(value).toLocaleString(lang==='it'?'it-IT':'en-US',{minimumFractionDigits:decimals,maximumFractionDigits:decimals})}
+  function updateCalc(){
+    if(inputs.some(x=>!x))return;
     const [steam,hours,price,efficiency,target]=inputs.map(x=>Number(x.value));
-    const valid=Number.isFinite(steam)&&steam>0&&steam<=100000&&hours>0&&hours<=8760&&price>=0&&price<=1000&&efficiency>=40&&efficiency<100&&target>40&&target<=99;
-    const heatMWh=steam*hours*2.4/3600;
-    const savedMWh=valid&&target>efficiency ?heatMWh*(100/efficiency-100/target):0;
-    const savedEuro=savedMWh*price;
-    const currentFuel=valid?heatMWh*100/efficiency:0;
+    const lhv=Number(gasLHV?.value),smc=gasUnit?.value==='smc';
+    const valid=Number.isFinite(steam)&&steam>0&&steam<=100000&&hours>0&&hours<=8760
+      &&Number.isFinite(price)&&price>=0&&price<=(smc?10:1000)
+      &&Number.isFinite(lhv)&&lhv>=8&&lhv<=11&&efficiency>=40&&efficiency<100&&target>40&&target<=99;
+    // ARERA quotes gas on the GCV/PCS basis. Standard boiler efficiencies are LHV/PCI.
+    // Convert the selected price into €/MWh_LHV for consistent thermal calculations.
+    const euroPerMWhPCS=smc?price/factor():price;
+    const euroPerMWhPCI=euroPerMWhPCS*pcsKWh()/lhv;
+    const usefulHeatMWh=steam*hours*2.4/3600;
+    const savedMWh=valid&&target>efficiency?usefulHeatMWh*(100/efficiency-100/target):0;
+    const savedEuro=savedMWh*euroPerMWhPCI;
+    const currentFuel=valid?usefulHeatMWh*100/efficiency:0;
     $('#calc-euro').textContent=valid?money.format(savedEuro):'—';
     $('#calc-energy').textContent=valid?fmt.format(savedMWh)+' MWh':'—';
-    $('#calc-pct').textContent=valid&&currentFuel?((savedMWh/currentFuel)*100).toFixed(1).replace('.',lang==='it'?',':'.')+'%':'—';
-    const meter=$('#calc-meter');if(meter)meter.style.width=(valid?Math.min(100,Math.max(0,savedMWh/currentFuel*100*4)):0)+'%';
-    const warn=$('#calc-warning');if(warn)warn.textContent=valid&&target<=efficiency?(lang==='it'?'Il rendimento obiettivo deve essere superiore a quello attuale.':'Target efficiency must exceed current efficiency.'):'';
+    $('#calc-pct').textContent=valid&&currentFuel?localized(savedMWh/currentFuel*100,1)+'%':'—';
+    const meter=$('#calc-meter');if(meter)meter.style.width=(valid&&currentFuel?Math.min(100,Math.max(0,savedMWh/currentFuel*100*4)):0)+'%';
+    const warn=$('#calc-warning');if(warn)warn.textContent=!valid?(lang==='it'?'Controlla i valori inseriti e il PCI del gas (8–11 kWh/Smc).':'Check the input values and gas LHV (8–11 kWh/Smc).')
+      :target<=efficiency?(lang==='it'?'Il rendimento obiettivo deve superare quello attuale.':'Target efficiency must exceed current efficiency.'):'';
   }
-  if(inputs.every(Boolean)){inputs.forEach(input=>input.addEventListener('input',updateCalc));updateCalc();}
+  if(inputs.every(Boolean)){
+    inputs.forEach(input=>input.addEventListener('input',()=>{if(input===gasInput)gasUserEdited=true;updateCalc()}));
+    gasLHV?.addEventListener('input',updateCalc);
+    gasUnit?.addEventListener('change',()=>{
+      if(!gasInput)return;
+      const nowSmc=gasUnit.value==='smc';
+      const current=Number(gasInput.value);
+      gasInput.value=String(Number((nowSmc?current*factor():current/factor()).toFixed(nowSmc?5:3)));
+      gasInput.max=nowSmc?'10':'1000';
+      gasInput.step=nowSmc?'0.00001':'0.01';
+      gasUserEdited=true;updateCalc();
+    });
+    updateCalc();
+    // The source is a documented monthly PSV-based benchmark, not an intraday quotation.
+    fetch('/data/gas-price.json',{cache:'no-store'}).then(res=>{if(!res.ok)throw Error('gas benchmark unavailable');return res.json()}).then(data=>{
+      const value=Number(data.eur_mwh),sourceFactor=Number(data.pcs_gj_per_smc)/3.6;
+      if(!Number.isFinite(value)||value<0||value>500||!/^20\d{2}-(0[1-9]|1[0-2])$/.test(data.reference_month)||Math.abs(sourceFactor-0.0107)>0.001)throw Error('invalid benchmark');
+      pcsGJPerSmc=Number(data.pcs_gj_per_smc);
+      if(!gasUserEdited&&gasInput){
+        gasInput.value=String(Number((gasUnit?.value==='smc'?value*factor():value).toFixed(gasUnit?.value==='smc'?6:4)));
+      }
+      if(gasNote){
+        const [year,month]=data.reference_month.split('-').map(Number);
+        const monthLabel=new Intl.DateTimeFormat(lang==='it'?'it-IT':'en-GB',{month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(Date.UTC(year,month-1,1)));
+        const intro=lang==='it'?'Riferimento ARERA CMEM,m (media mensile PSV), ':'ARERA CMEM,m benchmark (monthly PSV average), ';
+        const detail=lang==='it'?'. Solo materia prima, non prezzo industriale tutto compreso né quotazione in tempo reale. ':'. Commodity only, not a complete industrial tariff or a live intraday quote. ';
+        const link=document.createElement('a');link.href=ARERA_URL;link.textContent=lang==='it'?'Fonte ARERA':'ARERA source';link.target='_blank';link.rel='noopener noreferrer';
+        gasNote.replaceChildren(document.createTextNode(intro+monthLabel+' · '+localized(value,2)+' €/MWh PCS · '+localized(value*factor(),4)+' €/Smc'+detail),link);
+      }
+      updateCalc();
+    }).catch(()=>{/* Keep the transparent, dated fallback benchmark visible. */});
+  }
   const items={
     steam:{it:{title:'Generazione vapore',description:'Caldaie a tubi da fumo, combustione, accessori di centrale e integrazione del processo. La scelta corretta parte dal profilo di carico, non dal solo dato di targa.',tags:['Bilanci energetici','PED / ASME','Specifiche tecniche'],labels:['BRUCIATORE','GENERATORE DI VAPORE','ECONOMIZZATORE']},en:{title:'Steam generation',description:'Fire-tube boilers, combustion, plant auxiliaries and process integration. Sound decisions begin with the load profile, not the nameplate alone.',tags:['Energy balances','PED / ASME','Technical specifications'],labels:['BURNER','STEAM BOILER','ECONOMIZER']}} ,
     biomass:{it:{title:'Biomassa e combustibili alternativi',description:'Dalla qualità del combustibile alla griglia mobile, al sistema fumi e alle logiche di controllo: una visione di impianto, non di singola macchina.',tags:['Analisi combustibile','Combustione','Trattamento fumi'],labels:['COMBUSTIBILE','FORNO / GRIGLIA','SISTEMA FUMI']},en:{title:'Biomass & alternative fuels',description:'From fuel quality to moving-grate combustion, flue-gas treatment and automation: a plant-wide view rather than isolated equipment.',tags:['Fuel analysis','Combustion','Flue-gas treatment'],labels:['FUEL','FURNACE / GRATE','FLUE GAS']}} ,

@@ -1,0 +1,11 @@
+{
+  "source": "ARERA CMEM,m - monthly PSV day-ahead average (natural gas commodity benchmark, vulnerability regulated tariff component)",
+  "source_url": "https://www.arera.it/area-operatori/prezzi-e-tariffe/valore-cmemm-vulnerabili",
+  "reference_month": "2026-10",
+  "eur_mwh": 88.3585,
+  "eur_smc": 0.945436,
+  "price_basis": "PCS/GCV, reference higher heating value",
+  "pcs_gj_per_smc": 0.03852,
+  "observation": "Last published monthly commodity benchmark as of 2026-11-11. Not an intraday market quotation or an all-inclusive industrial gas tariff.",
+  "updated_at": "2026-11-11"
+}

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-labelledby="ttl desc">
+<title id="ttl">Industrial steam and heat recovery system</title>
+<desc id="desc">Original animated technical illustration: burner, boiler, steam headers, economizer and heat recovery circuit.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#10252f"/><stop offset=".56" stop-color="#101f29"/><stop offset="1" stop-color="#091820"/></linearGradient>
+<linearGradient id="steel" x1="0" y1="0" x2="1" y2=".13"><stop stop-color="#243f4b"/><stop offset=".2" stop-color="#688a94"/><stop offset=".43" stop-color="#a6bfc3"/><stop offset=".62" stop-color="#4f6e7b"/><stop offset="1" stop-color="#1e3640"/></linearGradient>
+<linearGradient id="front" x1="0" y1="0" x2="1" y2=".8"><stop stop-color="#a3b8bb"/><stop offset=".55" stop-color="#3b5965"/><stop offset="1" stop-color="#1d3540"/></linearGradient>
+<linearGradient id="copper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffc19e"/><stop offset=".45" stop-color="#f48f63"/><stop offset="1" stop-color="#9c4939"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#e8855c" stop-opacity=".22"/><stop offset="1" stop-color="#e8855c" stop-opacity="0"/></radialGradient>
+<pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" fill="none" stroke="#7798a4" stroke-width=".7" opacity=".14"/></pattern>
+<pattern id="dot" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#89b4b9" opacity=".14"/></pattern>
+<filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="15"/></filter>
+<filter id="soft"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+<style>
+.flow-hot{stroke-dasharray:14 15;animation:transport 7s linear infinite}
+.flow-cold{stroke-dasharray:10 12;animation:transport 9s linear infinite reverse}
+.pulse{animation:beacon 3.1s ease-in-out infinite}
+.flicker{transform-origin:192px 327px;animation:flicker 3s ease-in-out infinite}
+@keyframes transport{to{stroke-dashoffset:-232}}
+@keyframes beacon{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes flicker{0%,100%{opacity:.8;transform:scale(.96)}50%{opacity:1;transform:scale(1.05)}}
+@media (prefers-reduced-motion:reduce){.flow-hot,.flow-cold,.pulse,.flicker{animation:none}}
+</style>
+<rect width="1000" height="650" rx="18" fill="url(#bg)"/>
+<rect width="1000" height="650" fill="url(#grid)"/>
+<rect width="1000" height="650" fill="url(#dot)"/>
+<ellipse cx="430" cy="350" rx="400" ry="290" fill="url(#glow)"/>
+<g opacity=".45" stroke="#45636f" stroke-width="2" fill="none">
+<path d="M75 515l290 88h460l125-99"/><path d="M75 515l223-90h530l122 79"/><path d="M298 425l67 178"/><path d="M828 425l-3 178"/>
+</g>
+<g opacity=".67" font-family="ui-monospace,SFMono-Regular,Consolas,monospace" fill="#91afb6">
+<text x="49" y="56" font-size="16" letter-spacing="2.5">ENGINEERED ENERGY / 01</text>
+<text x="949" y="56" font-size="13" text-anchor="end" letter-spacing="1">STEAM + RECOVERY</text>
+</g>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M497 234v-85h156v65" stroke="#678996" stroke-width="26"/>
+<path d="M497 234v-85h156v65" stroke="#bacdd0" stroke-width="5"/>
+<path d="M499 149h154" stroke="#ec956c" stroke-width="5" class="flow-hot"/>
+<path d="M650 214v-65" stroke="#ec956c" stroke-width="4" class="flow-hot"/>
+<path d="M779 368h90v-144h58" stroke="#7fa4b0" stroke-width="22"/>
+<path d="M779 368h90v-144h58" stroke="#afd0d2" stroke-width="4"/>
+<path d="M862 225h64" stroke="#8fcacf" stroke-width="4" class="flow-cold"/>
+<path d="M780 439h78v75h70" stroke="#80a8b3" stroke-width="18"/>
+<path d="M780 439h78v75h70" stroke="#9ed4d7" stroke-width="4" class="flow-cold"/>
+</g>
+<ellipse cx="514" cy="478" rx="329" ry="35" fill="#000" opacity=".22" filter="url(#shadow)"/>
+<!-- Industrial boiler, oversized for hero composition -->
+<rect x="235" y="243" width="390" height="229" rx="110" fill="url(#steel)" stroke="#a8c3c7" stroke-width="4"/>
+<path d="M342 249h181M340 467h183" stroke="#d1e0df" stroke-width="3" opacity=".55"/>
+<ellipse cx="290" cy="358" rx="83" ry="114" fill="url(#front)" stroke="#c7d8d9" stroke-width="4"/>
+<ellipse cx="290" cy="358" rx="65" ry="93" fill="#17323e" stroke="#8da9af" stroke-width="4"/>
+<g stroke="#77949e" stroke-width="4" opacity=".65"><path d="M320 294h225M320 324h225M320 354h225M320 384h225M320 414h225"/></g>
+<g stroke="#bccfd1" stroke-width="2" fill="#1f3d49"><circle cx="290" cy="260" r="5"/><circle cx="290" cy="456" r="5"/><circle cx="216" cy="356" r="5"/><circle cx="363" cy="356" r="5"/></g>
+<path d="M373 454v38h-34v-18m188-20v38h-34v-18" fill="#304f5a" stroke="#abc7c9" stroke-width="3"/>
+<!-- Burner and flame -->
+<rect x="77" y="318" width="135" height="79" rx="13" fill="#284653" stroke="#8fb0b9" stroke-width="3"/>
+<rect x="75" y="332" width="32" height="52" rx="4" fill="url(#copper)" stroke="#f4b18b" stroke-width="2"/>
+<path d="M209 333l60 9v31l-60 9" fill="#b65d44" stroke="#f2ab84" stroke-width="3"/>
+<ellipse cx="282" cy="356" rx="23" ry="43" fill="#ec936d" opacity=".42" filter="url(#soft)"/>
+<path class="flicker" d="M270 387q-21-37 9-64-5 24 12 33 4-18 13-22 11 34-10 53z" fill="url(#copper)"/>
+<g fill="#d8e5e4" opacity=".86"><circle cx="118" cy="339" r="5"/><circle cx="138" cy="339" r="5"/><circle cx="158" cy="339" r="5"/></g>
+<!-- Instrumentation -->
+<g stroke="#b6d2d5" stroke-width="3" fill="#1b3540"><path d="M416 244v-43h53"/><circle cx="484" cy="202" r="24"/><circle cx="484" cy="202" r="13" stroke="#648a98" stroke-width="2"/><path d="M484 202l8-8" stroke="#f0a67e" stroke-width="3"/><circle cx="533" cy="230" r="10" fill="#c17856" class="pulse"/></g>
+<g stroke="#8eaab2" fill="none"><path d="M554 270v-32h31"/><path d="M405 471v31h66"/></g>
+<!-- Economizer -->
+<rect x="649" y="239" width="139" height="240" rx="8" fill="#314d5a" stroke="#a6c4c7" stroke-width="5"/>
+<rect x="670" y="257" width="97" height="202" rx="2" fill="#1a333c" stroke="#81a4ae" stroke-width="3"/>
+<g stroke="#e8a07b" stroke-width="4"><path d="M682 275h73m-73 22h73m-73 22h73m-73 22h73m-73 22h73m-73 22h73m-73 22h73m-73 22h73"/></g>
+<g stroke="#93b9c2" stroke-width="3"><path d="M693 266v180m25-180v180m25-180v180"/></g>
+<!-- Steam lines glow animation -->
+<path d="M560 248h50v80h35" fill="none" stroke="#f39a6e" stroke-width="5" class="flow-hot"/>
+<path d="M778 354h53" fill="none" stroke="#ffa17a" stroke-width="4" class="flow-hot"/>
+<!-- Graphic measurement nodes -->
+<g font-family="ui-monospace,SFMono-Regular,Consolas,monospace" font-size="15" font-weight="700" fill="#d5e5e4" letter-spacing="1">
+<text x="90" y="286">COMBUSTION</text><text x="359" y="540">STEAM GENERATION</text><text x="651" y="541">HEAT RECOVERY</text>
+</g>
+<g opacity=".7" stroke="#70929d" stroke-width="1.5"><path d="M151 298v19M466 514v-25M722 515v-32"/></g>
+<g fill="#92e3d1" class="pulse"><circle cx="875" cy="226" r="5"/><circle cx="474" cy="150" r="5"/></g>
+<g stroke="#b6cacf" fill="none" stroke-width="2" opacity=".7"><path d="M40 90h42M40 90v42M955 90h-42M955 90v42M40 566h42M40 566v-42M955 566h-42M955 566v-42"/></g>
+</svg>

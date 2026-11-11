@@ -1,0 +1,20 @@
+name: Quality checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  basic-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax
+        run: node --check assets/site.js
+      - name: Verify local links and anchors
+        run: python3 check_site.py
+      - name: PHP syntax
+        run: php -l contact.php && php -l contact-config.php

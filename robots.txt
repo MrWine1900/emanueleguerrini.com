@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /contact.php
+Sitemap: https://emanueleguerrini.com/sitemap.xml

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="1080" viewBox="0 0 1320 1080" role="img" aria-label="Industrial steam and thermal equipment illustration">
+<defs>
+<linearGradient id="bg" x2="1" y2="1"><stop stop-color="#23323b"/><stop offset=".55" stop-color="#101e26"/><stop offset="1" stop-color="#081218"/></linearGradient>
+<linearGradient id="steel" x2="0" y2="1"><stop stop-color="#748894"/><stop offset=".19" stop-color="#334b57"/><stop offset=".46" stop-color="#182b34"/><stop offset=".75" stop-color="#526776"/><stop offset="1" stop-color="#0d1a22"/></linearGradient>
+<linearGradient id="front" x2="0" y2="1"><stop stop-color="#6e8390"/><stop offset=".5" stop-color="#22343e"/><stop offset="1" stop-color="#101820"/></linearGradient>
+<linearGradient id="orange" x2="0" y2="1"><stop stop-color="#ffa06d"/><stop offset=".5" stop-color="#db5d35"/><stop offset="1" stop-color="#712d21"/></linearGradient>
+<radialGradient id="light"><stop stop-color="#7d9fac" stop-opacity=".25"/><stop offset="1" stop-color="#283d48" stop-opacity="0"/></radialGradient>
+<pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse"><path d="M46 0H0V46" fill="none" stroke="#9aafb5" stroke-width=".6" opacity=".09"/></pattern>
+<filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".28" numOctaves="3" seed="12" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".13"/></feComponentTransfer></filter>
+<filter id="shadow"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<rect width="1320" height="1080" fill="url(#bg)"/><rect width="1320" height="1080" fill="url(#grid)"/>
+<ellipse cx="790" cy="380" rx="580" ry="480" fill="url(#light)"/>
+<g opacity=".22" stroke="#b4c6cb" fill="none"><path d="M0 828H1320 M0 882H1320 M0 942H1320 M0 1010H1320"/><path d="M245 825L40 1080M515 825L395 1080M750 825L715 1080M985 825L1080 1080"/></g>
+<!-- Pipework and gantry -->
+<g fill="none" stroke-linecap="square">
+<path d="M130 160H1000Q1025 160 1025 185V360" stroke="#12232c" stroke-width="43"/>
+<path d="M130 160H1000Q1025 160 1025 185V360" stroke="url(#steel)" stroke-width="28"/>
+<path d="M130 160H1000Q1025 160 1025 185V360" stroke="#b4d0d4" stroke-width="2" opacity=".42"/>
+<path d="M870 125V360M300 170V335" stroke="#263b45" stroke-width="39"/>
+<path d="M870 125V360M300 170V335" stroke="#708995" stroke-width="24"/>
+<path d="M865 125V360M296 170V335" stroke="#bed1d3" stroke-width="2" opacity=".28"/>
+</g>
+<g fill="#17262e" stroke="#98abb2" stroke-opacity=".42" stroke-width="3">
+<rect x="275" y="270" width="49" height="22" rx="2"/><rect x="846" y="230" width="48" height="20" rx="2"/><rect x="1004" y="286" width="42" height="20" rx="2"/>
+</g>
+<!-- Platform -->
+<path d="M270 555H1202M270 580H1202" stroke="#677782" stroke-width="9"/><path d="M300 500V578M380 500V578M460 500V578M540 500V578M620 500V578M700 500V578M780 500V578M860 500V578M940 500V578M1020 500V578M1100 500V578" stroke="#5d7480" stroke-width="5"/><path d="M270 500H1202" stroke="#a2b5bc" stroke-width="4"/>
+<!-- Boiler body shadow -->
+<ellipse cx="685" cy="820" rx="505" ry="64" fill="#000" opacity=".55" filter="url(#shadow)"/>
+<!-- Steel boiler body -->
+<rect x="350" y="415" width="720" height="340" rx="100" fill="url(#steel)" stroke="#adc1c6" stroke-width="5"/>
+<ellipse cx="1030" cy="585" rx="88" ry="166" fill="#293f49" stroke="#b0c8cf" stroke-width="6"/>
+<ellipse cx="1031" cy="585" rx="64" ry="145" fill="url(#front)" stroke="#617c87" stroke-width="3"/>
+<rect x="372" y="425" width="30" height="322" fill="#1f313a" opacity=".85"/><rect x="530" y="427" width="20" height="325" fill="#23343c" opacity=".66"/><rect x="864" y="435" width="22" height="309" fill="#23343c" opacity=".7"/>
+<path d="M420 460H940M425 694H942" stroke="#b2c9ce" stroke-width="2" opacity=".24"/><path d="M431 500H930M432 660H930" stroke="#dae5e4" stroke-width="1" opacity=".15"/>
+<!-- Burner -->
+<path d="M1030 548H1160V622H1030" fill="url(#orange)" stroke="#fca27c" stroke-width="4"/><rect x="1092" y="509" width="83" height="156" rx="13" fill="#b8482f" stroke="#d46a4a" stroke-width="5"/><rect x="1147" y="533" width="96" height="111" rx="11" fill="url(#orange)" stroke="#ef7a4a" stroke-width="5"/><circle cx="1202" cy="589" r="41" fill="#4a2830" stroke="#f18759" stroke-width="10"/><circle cx="1202" cy="589" r="24" fill="#1d2830" stroke="#93a0a2" stroke-width="4"/>
+<!-- Nozzles -->
+<g fill="#334a56" stroke="#b4c5ca" stroke-width="3"><path d="M516 423v-67h60v67"/><path d="M758 423v-96h47v96"/><rect x="503" y="349" width="86" height="18"/><rect x="747" y="323" width="70" height="18"/><path d="M457 744v58h60v-58"/><path d="M835 744v56h60v-56"/></g>
+<!-- supports -->
+<g fill="#23343f" stroke="#78919d" stroke-width="3"><path d="M480 750L453 835h112l-27-85"/><path d="M862 750l-28 85h112l-27-85"/></g>
+<!-- instrumentation -->
+<path d="M630 415v-96h65" fill="none" stroke="#9aafb7" stroke-width="15"/><circle cx="698" cy="316" r="30" fill="#e0e5df" stroke="#23323c" stroke-width="8"/><path d="M697 316l13-15" stroke="#ba4b30" stroke-width="4"/><circle cx="697" cy="316" r="3" fill="#223943"/>
+<path d="M995 416v-73" stroke="#c5d1d0" stroke-width="12"/><path d="M964 345h62" stroke="#c5d1d0" stroke-width="11"/>
+<!-- floor marking -->
+<path d="M80 854H1260" stroke="#df6c48" stroke-width="5" opacity=".55"/>
+<path d="M220 210h100M220 210v95M1240 735h-75M1240 735v110" stroke="#dd744d" stroke-width="3" opacity=".75"/>
+<g font-family="monospace" fill="#d4e1e0" font-size="15" letter-spacing="2" opacity=".7"><text x="74" y="94">INDUSTRIAL THERMAL SYSTEMS</text><text x="1000" y="950">STEAM / HEAT / POWER</text><text x="79" y="960">EG — TECHNICAL REFERENCE</text></g>
+<rect width="1320" height="1080" filter="url(#gr)" opacity=".33"/>
+</svg>

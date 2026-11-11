@@ -1,21 +1,28 @@
-# Pubblicazione emanueleguerrini.com su Hostinger via GitHub
+# Pubblicazione di emanueleguerrini.com su Hostinger
 
-## Perche questa versione
-Questo repository contiene le pagine HTML, CSS, JavaScript e PHP del sito personale. Nessuna password o chiave SSH e richiesta in GitHub: Hostinger supporta la connessione GitHub via OAuth.
+Il repository **MrWine1900/emanueleguerrini.com** contiene il sito HTML/CSS/JavaScript/PHP in italiano e inglese. Il branch di pubblicazione è `main`.
 
-## 1. Repository GitHub
-Creare un repository **privato** `emanueleguerrini-site` sull’account GitHub `MrWine1900`. Caricare i file e le cartelle qui presenti nella root del repository (non il file ZIP). Branch `main`.
+## Collegamento iniziale (da fare una volta)
 
-## 2. Hostinger
-Accedere a Hostinger > Siti web > Gestisci sito > Avanzate > Git > Connetti con GitHub. Autorizzare il repository `MrWine1900/emanueleguerrini-site`, selezionare `main` e directory `public_html`. Verificare il sito e attivare Auto-deployment.
+1. Accedere a **Hostinger → Siti web** e aprire **Gestisci sito** per `emanueleguerrini.com`.
+2. Confermare che sia un sito **HTML/PHP personalizzato** collegato al piano Hosting Web; la funzione Git non è disponibile per Hostinger Website Builder.
+3. **Prima di distribuire:** eseguire il backup di `public_html` se esistono già file o un sito, perché il deploy può sovrascrivere la destinazione.
+4. Aprire **Avanzate → Git → Connetti con GitHub**.
+5. Autorizzare la GitHub App Hostinger per il repository **MrWine1900/emanueleguerrini.com**.
+6. Scegliere il branch **main**, directory di destinazione **public_html**, quindi cliccare **Deploy**.
+7. Dopo il primo deploy, abilitare **Auto-deployment**. I futuri commit su `main` possono aggiornare il sito automaticamente.
 
-## 3. Prima del lancio
-- Fare backup dell'eventuale sito già presente in `public_html`.
-- Controllare che il dominio punti allo spazio Hosting Web corretto e che HTTPS sia attivo.
-- Configurare l'indirizzo di ricezione nel file `contact-config.php` nella root del sito, senza inserire segreti nel repo, poi testare realmente l'invio del modulo. Il form attualmente restituisce errore 503 se non configurato.
-- Revisionare le pagine Privacy e i dati obbligatori.
-- Verificare https://emanueleguerrini.com/ e https://emanueleguerrini.com/en/ da smartphone e desktop.
+## Controlli di lancio
+
+- Aprire `https://emanueleguerrini.com/` e `https://emanueleguerrini.com/en/` e verificare SSL, immagini, navigazione e versione mobile.
+- Configurare sul **server** il file `contact-config.php` con un indirizzo reale per ricevere i lead e testare la consegna. Il valore nel repository è intenzionalmente vuoto. Il form risponde 503 finché non è configurato. Evitare di inserire credenziali o email private nel codice pubblico; l'indirizzo del destinatario è un dato di configurazione.
+- Verificare che successivi deploy non reimpostino il valore server-side di `contact-config.php`; scegliere un metodo di configurazione persistente.
+- Completare informativa privacy e dati professionali/fiscali prima di iniziare a raccogliere richieste reali.
+- Verificare i risultati dei test in **GitHub → Actions**.
 
 ## Note
-Lo script di controllo automatico in `.github/workflows/quality.yml` controlla HTML, JS e PHP. Il vecchio workflow SSH e stato rimosso perche il deploy viene gestito nativamente da Hostinger Git: evita segreti SSH non necessari.
-Riferimento ufficiale: https://www.hostinger.com/support/1583302-how-to-deploy-a-git-repository-in-hostinger/
+
+Il repository è **pubblico** al momento della creazione. Non contiene segreti; mantenere segreti e credenziali esclusivamente sul server o in un archivio sicuro.
+Il deploy è gestito dalla integrazione Git di Hostinger, senza necessità di chiavi SSH in GitHub.
+
+Guida ufficiale Hostinger: https://www.hostinger.com/support/1583302-how-to-deploy-a-git-repository-in-hostinger/

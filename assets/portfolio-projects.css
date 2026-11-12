@@ -34,3 +34,12 @@
 @media(max-width:850px){.eg-portfolio-intro{grid-template-columns:1fr}.eg-work-solar,.eg-work-biomass{grid-template-columns:1fr}.eg-work-biomass .eg-work-media{order:0}.eg-work-content{padding:26px}.eg-work-media{min-height:290px}.eg-work-content h3{font-size:clamp(27px,4.2vw,38px)}}
 @media(max-width:620px){.eg-work-grid{grid-template-columns:1fr;gap:16px}.eg-work-solar,.eg-work-biomass{grid-column:auto}.eg-work-media{min-height:218px;aspect-ratio:1.6}.eg-work-content{padding:22px}.eg-work-content h3{font-size:29px;margin:17px 0 12px}.eg-work-tags{margin:19px 0 28px}.eg-media-id{top:12px;left:14px}.eg-media-note{left:14px;bottom:12px}.eg-portfolio-note{font-size:11px}.eg-calc-visual{margin-top:28px}}
 @media(prefers-reduced-motion:reduce){.eg-work-card,.eg-work-card.eg-visible{opacity:1;transform:none!important;transition:none!important}.eg-work-media svg{transition:none!important}}
+
+.eg-work-media .eg-work-photo{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.eg-work-card:hover .eg-work-photo{transform:scale(1.045)}
+.eg-work-solar .eg-work-photo{object-position:48% center}
+.eg-work-media:after{z-index:1;pointer-events:none}
+.eg-media-id,.eg-media-note{z-index:2}
+.eg-calc-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.eg-calc-visual figcaption{z-index:2}
+@media(prefers-reduced-motion:reduce){.eg-work-media .eg-work-photo{transition:none!important}}

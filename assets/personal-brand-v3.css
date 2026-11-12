@@ -83,3 +83,8 @@ html{scroll-padding-top:92px}
 .eg-boiler-photo img{height:auto;max-width:none;width:145%;position:relative;object-fit:cover;object-position:left top;margin:0 0 -5%;clip-path:inset(0 30% 30% 0)}
 .eg-boiler-photo figcaption{z-index:2}
 @media(max-width:650px){.eg-project-media img{height:165%;object-position:center top}.eg-boiler-photo img{width:145%}}
+
+/* Progressive enhancement: content must NEVER depend on JS/scroll observer to be readable. */
+.eg-reveal{opacity:1!important;transform:none!important}
+@keyframes egComfortRise{from{opacity:.75;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:no-preference){.eg-reveal.eg-inview{animation:egComfortRise .65s ease both}}

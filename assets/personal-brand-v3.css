@@ -74,3 +74,12 @@ html{scroll-padding-top:92px}
 @media(max-width:650px){.eg-feature-strip .wrap{gap:12px;justify-content:flex-start}.eg-feature-strip span{font-size:9px}.eg-project-grid{grid-template-columns:1fr;gap:16px}.eg-project--wide{grid-column:auto;display:flex}.eg-project--wide .eg-project-media{min-height:260px}.eg-project-media{min-height:240px}.eg-project-copy{padding:24px}.eg-project-copy h3{font-size:30px;margin:10px 0 13px}.eg-project-details{margin:19px 0 22px}.eg-real-gallery{grid-template-columns:1fr;gap:12px}.eg-real-gallery img{height:200px}.eg-cad-photo img{height:310px}.eg-deliverables{grid-template-columns:1fr 1fr}.eg-norm-grid{grid-template-columns:1fr 1fr}.eg-norm{padding:13px}.eg-norm strong{font-size:17px}.eg-norm span{font-size:11px}.eg-boiler-photo{margin-top:22px}.eg-portfolio-v3,.eg-cad-section,.eg-compliance{overflow:hidden}}
 @media(max-width:390px){.eg-deliverables,.eg-norm-grid{grid-template-columns:1fr}.eg-cad-photo img{height:260px}}
 @media(prefers-reduced-motion:reduce){.eg-reveal{opacity:1;transform:none;transition:none}.eg-project,.eg-project-media img,.eg-real-gallery img{transition:none!important}}
+
+/* Crop generated render titles/badges out of the portfolio photography area.
+   All project captions are real HTML text (accessible, responsive and SEO-friendly). */
+.eg-project-media img{inset:0 0 auto 0;height:162%;object-fit:cover;object-position:center top;transform-origin:center top}
+.eg-project:hover .eg-project-media img{transform:scale(1.025)}
+.eg-boiler-photo{aspect-ratio:16/10;display:flex;flex-direction:column}
+.eg-boiler-photo img{height:auto;max-width:none;width:145%;position:relative;object-fit:cover;object-position:left top;margin:0 0 -5%;clip-path:inset(0 30% 30% 0)}
+.eg-boiler-photo figcaption{z-index:2}
+@media(max-width:650px){.eg-project-media img{height:165%;object-position:center top}.eg-boiler-photo img{width:145%}}

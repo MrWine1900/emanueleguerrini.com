@@ -1,0 +1,36 @@
+/* Engineering projects portfolio */
+.eg-portfolio{background:#f7f6f2;overflow:hidden}
+.eg-portfolio .section-title em{font-style:normal;color:#80999a}
+.eg-portfolio-intro{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(28px,7vw,96px);align-items:end;margin-bottom:clamp(30px,5vw,62px)}
+.eg-portfolio-intro .section-title{max-width:920px;margin-bottom:0}
+.eg-portfolio-intro>p{margin:0 0 10px;color:#526367;font-size:clamp(15px,1.3vw,18px);line-height:1.75}
+.eg-work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.eg-work-card{background:#fff;border:1px solid rgba(12,27,31,.12);overflow:hidden;display:flex;flex-direction:column;min-width:0;transition:border-color .25s ease,transform .25s ease;opacity:0;transform:translateY(24px)}
+.eg-work-card.eg-visible{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease,border-color .25s ease}
+.eg-work-card:hover{border-color:#9ab1ad}
+.eg-work-card.eg-visible:hover{transform:translateY(-3px)}
+.eg-work-solar,.eg-work-biomass{grid-column:span 2;display:grid;grid-template-columns:minmax(0,1.13fr) minmax(0,.87fr)}
+.eg-work-biomass .eg-work-media{order:2}
+.eg-work-media{position:relative;min-height:clamp(230px,27vw,410px);overflow:hidden;background:#102934;color:#fff;isolation:isolate}
+.eg-work-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,20,27,.04),transparent 35%,rgba(7,20,27,.65));pointer-events:none}
+.eg-work-media svg{display:block;width:100%;height:100%;position:absolute;inset:0;transform:scale(1.02);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.eg-work-card:hover .eg-work-media svg{transform:scale(1.065)}
+.eg-media-id,.eg-media-note{position:absolute;z-index:1;font-size:10px;letter-spacing:.13em;line-height:1.5;font-weight:700;color:#eff6f1}
+.eg-media-id{top:20px;left:22px;border-left:2px solid #e7a07a;padding-left:11px}
+.eg-media-note{bottom:20px;left:22px;color:rgba(255,255,255,.85);font-size:9px}
+.eg-work-content{display:flex;flex-direction:column;align-items:start;flex:1;padding:clamp(26px,4vw,54px)}
+.eg-work-count{font-family:monospace;font-size:11px;letter-spacing:.14em;color:#a05f48}
+.eg-work-content h3{font-family:var(--head,Arial,sans-serif);font-size:clamp(28px,3vw,46px);line-height:1.12;letter-spacing:-.057em;margin:24px 0 18px;overflow-wrap:break-word}
+.eg-work-content p{color:#4c5e62;line-height:1.76;font-size:clamp(14px,1.14vw,16px);margin:0;max-width:58ch}
+.eg-work-tags{display:flex;flex-wrap:wrap;gap:7px;margin:28px 0 36px}
+.eg-work-tags span{font-size:10px;letter-spacing:.02em;border:1px solid #d2dddb;padding:8px 10px;color:#4f6567}
+.eg-work-link{display:inline-flex;align-items:center;gap:14px;margin-top:auto;padding-bottom:7px;border-bottom:1px solid #a3aaa8;font-weight:700;font-size:13px}
+.eg-work-link span{font-size:20px;line-height:1;transition:transform .2s}
+.eg-work-link:hover span{transform:translate(2px,-2px)}
+.eg-portfolio-note{font-size:12px;line-height:1.7;max-width:900px;margin:25px 0 0;color:#697579}
+.eg-calc-visual{position:relative;overflow:hidden;margin:42px 0 0;background:#17333e;aspect-ratio:1.65;border:1px solid rgba(255,255,255,.15)}
+.eg-calc-visual svg{position:absolute;inset:0;width:100%;height:100%}
+.eg-calc-visual figcaption{position:absolute;bottom:12px;left:15px;font:700 9px/1.3 monospace;letter-spacing:.12em;color:#e8f0ed}
+@media(max-width:850px){.eg-portfolio-intro{grid-template-columns:1fr}.eg-work-solar,.eg-work-biomass{grid-template-columns:1fr}.eg-work-biomass .eg-work-media{order:0}.eg-work-content{padding:26px}.eg-work-media{min-height:290px}.eg-work-content h3{font-size:clamp(27px,4.2vw,38px)}}
+@media(max-width:620px){.eg-work-grid{grid-template-columns:1fr;gap:16px}.eg-work-solar,.eg-work-biomass{grid-column:auto}.eg-work-media{min-height:218px;aspect-ratio:1.6}.eg-work-content{padding:22px}.eg-work-content h3{font-size:29px;margin:17px 0 12px}.eg-work-tags{margin:19px 0 28px}.eg-media-id{top:12px;left:14px}.eg-media-note{left:14px;bottom:12px}.eg-portfolio-note{font-size:11px}.eg-calc-visual{margin-top:28px}}
+@media(prefers-reduced-motion:reduce){.eg-work-card,.eg-work-card.eg-visible{opacity:1;transform:none!important;transition:none!important}.eg-work-media svg{transition:none!important}}
